@@ -35,6 +35,9 @@ const menu = () => {
             closeMenu();
             animateScroll(target.attributes[1].textContent);
         }
+        if(target.closest('.link-list-menu')){
+
+        }
     });
 
 
