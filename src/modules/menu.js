@@ -15,7 +15,6 @@ const menu = () => {
             popupDialogMenu.style.transform = 'translateX(645px)'; 
         }
     });
-
     const openMenu = () => {
         popupDialogMenu.style.transform = 'translateY(0)';
     };
