@@ -6,6 +6,7 @@ const sendData = () => {
         closeBtn = popupThank.querySelector('.close'),
         popupTitle = popupThank.querySelector('.popup-thank__title');
 
+
     const validateInput = () => {
         document.querySelectorAll('form').forEach(form => {
             [...form.elements].forEach(item => {
@@ -64,8 +65,12 @@ const sendData = () => {
         event.preventDefault();
         const target = event.target;
 
-        postData(target);
-        target.elements[target.elements.length-1].disabled = true;
+        if(!target.elements[target.elements.length-1].checked){
+            alert('Прежде чем отправить, нужно согласиться с нашей политикой конфиденциальности!');
+        } else {
+            postData(target);
+            target.elements[target.elements.length-2].disabled = false;
+        }
     });
 
     validateInput();
