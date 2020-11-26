@@ -9,6 +9,7 @@ import { popupRepair } from './modules/popup-repair-types';
 import { popupPrivacy } from './modules/privacy-policy';
 import sliderRepairTypes from './modules/types-repair';
 import sendData from './modules/send-data';
+import accordion from './modules/faq';
 
 let windowWidth = window.innerWidth;
 
@@ -25,3 +26,4 @@ window.addEventListener('resize', (e) =>{
     formula(windowWidth);
 });
 popupConsultation();
+accordion();
