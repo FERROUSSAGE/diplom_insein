@@ -18,7 +18,7 @@ const formula = (windowWidth, bolean) => {
                 icon.classList.add('active-item');
                 popup.classList.add('active-item');
     
-                if(!(icon.getBoundingClientRect().top > 50)){
+                if(!(item.getBoundingClientRect().top > 225)){
                     popup.classList.add('active-formula');
                     popup.style.cssText = "top: 100px;  padding: 40px 40px 0;";
                     top = popup.style.top;
