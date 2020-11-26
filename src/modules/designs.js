@@ -6,7 +6,14 @@ const designs = () => {
         designsSlider = designsSliderWrap.querySelector('.designs-slider'),
         designSliderStyle = [...designsSlider.children],
         previewBlocks = design.querySelectorAll('.preview-block'),
-        context = navList.children;
+        context = navList.children,
+        designsCounter = designsSliderWrap.querySelector('#designs-counter'),
+        designRight = designsSliderWrap.querySelector('#design_right'),
+        designLeft = designsSliderWrap.querySelector('#design_left');
+
+        let count = 0,
+            countSlides = designSliderStyle[0].children.length,
+            number = 0;
 
 
     const clear = () => {
@@ -29,13 +36,16 @@ const designs = () => {
         const target = e.target;
 
         let buffer = 0,
-        navWidth = navList.parentNode.offsetWidth;
+            navWidth = navList.parentNode.offsetWidth;
 
         if(target.matches('.designs-nav__item')){
             clear();
             target.classList.add('active');
             designSliderStyle[target.dataset.num].style.display = 'flex';
             previewBlocks[target.dataset.num].classList.add('visible');
+            countSlides = designSliderStyle[target.dataset.num].children.length;
+            number = target.dataset.num;
+            designsCounter.children[0].children[1].textContent = designSliderStyle[target.dataset.num].children.length;
         }
         if(target.matches('.nav-arrow_right')){
             buffer = (navList.offsetWidth - navWidth);
@@ -66,6 +76,27 @@ const designs = () => {
                 }
             });
         });
+    });
+
+    const slider = (number,count) => {
+        [...designSliderStyle[number].children].forEach((j, i) => j.style.cssText = 'display:none;');
+        designSliderStyle[number].children[count].style.cssText = 'display: flex';
+        designsCounter.children[0].children[0].textContent = count + 1;
+    };
+
+    designRight.addEventListener('click', () => {
+        if(count > countSlides - 1){
+            count = 0;
+        }
+        slider(number,count);
+        count++;
+    });
+    designLeft.addEventListener('click', () => {
+        count--;
+        if(count < 0){
+            count = countSlides - 1;
+        }
+        slider(number,count);
     });
 };
 export default designs;
