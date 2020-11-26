@@ -26,6 +26,7 @@ sliderRepairTypes(windowWidth)
 window.addEventListener('resize', (e) =>{
     let windowWidth = e.target.innerWidth; 
     formula(windowWidth);
+    documents(windowWidth);
 });
 popupConsultation();
 accordion();

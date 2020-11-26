@@ -1,4 +1,4 @@
-const documents = () => {
+const documents = (windowWidth) => {
     const transparencySlider = document.querySelector('.transparency-slider'),
         transparencyItems = transparencySlider.querySelectorAll('.transparency-item'),
         transparencyArrowLeft = document.querySelector('#transparency-arrow_left'),
@@ -17,7 +17,6 @@ const documents = () => {
     let count = 0,
         numberPopupSlide = 0,
         countSlides = transparencyItems.length - 1;
-
     const enabled = (i = 0) => {
         transparencyItems.forEach((item, i) => {
             item.addEventListener('click', () => {
@@ -25,7 +24,11 @@ const documents = () => {
                 transparencyPopupSlides[i].style.display = 'flex';
                 numberPopupSlide = i;
             });
-            item.style.display = 'none';
+            if(windowWidth < 1090){
+                item.style.display = 'none';
+            } else {
+                item.style.display = 'flex';
+            }
             transparencyPopupSlides[i].style.display = 'none';
             [...transparencyPopupSlides[i].children].forEach((item) => item.style.display = 'block');
             transparencyCounter.children[0].children[0].textContent = 1;
