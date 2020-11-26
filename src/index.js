@@ -11,6 +11,7 @@ import sliderRepairTypes from './modules/types-repair';
 import sendData from './modules/send-data';
 import accordion from './modules/faq';
 import reviews from './modules/reviews';
+import documents from './modules/documents';
 
 let windowWidth = window.innerWidth;
 
@@ -29,3 +30,4 @@ window.addEventListener('resize', (e) =>{
 popupConsultation();
 accordion();
 reviews();
+documents();
