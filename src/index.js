@@ -15,6 +15,7 @@ import documents from './modules/documents';
 import { Partners } from './modules/partners';
 import problems from './modules/problems';
 import scheme from './modules/scheme';
+import designs from './modules/designs';
 
 let windowWidth = window.innerWidth;
 
@@ -32,6 +33,7 @@ popupConsultation();
 accordion();
 reviews();
 scheme();
+designs();
 window.addEventListener('resize', (e) =>{
     windowWidth = e.target.innerWidth; 
     formula(windowWidth);
