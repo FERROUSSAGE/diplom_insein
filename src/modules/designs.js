@@ -8,16 +8,22 @@ const designs = () => {
         previewBlocks = design.querySelectorAll('.preview-block'),
         context = navList.children;
 
-    previewBlocks[0].classList.add('visible');
 
     const clear = () => {
         [...context].forEach((item, i) => {
             item.classList.remove('active');
             item.dataset.num = i;
+            designSliderStyle[i].dataset.num = i;
+            [...designSliderStyle[i].children].forEach((item, index) => item.dataset.slide_num = index);
             designSliderStyle[i].style.display = 'none';
             previewBlocks[i].classList.remove('visible');
         });
     };
+
+    clear();
+    context[0].classList.add('active');
+    previewBlocks[0].classList.add('visible');
+    designSliderStyle[0].style.display = 'flex';
 
     navWrap.addEventListener('click', (e) => {
         const target = e.target;
@@ -43,6 +49,23 @@ const designs = () => {
             target.style.display = 'none';
             target.nextElementSibling.style.display = 'block';
         }
+    });
+
+    previewBlocks.forEach((item, index) => {
+        [...item.children].forEach((j, i) => {
+            j.dataset.preview_num = i;
+        });
+        item.addEventListener('click', (e) => {
+            const target = e.target;
+            [...target.parentNode.parentNode.children].forEach(h => [...h.children].forEach(b => b.classList.remove('preview_active')));
+            [...designSliderStyle[index].children].forEach((slide, i) => {
+                slide.style.display = 'none';
+                if(target.parentNode.dataset.preview_num === slide.dataset.slide_num){
+                    target.classList.add('preview_active');
+                    slide.style.display = 'block';
+                }
+            });
+        });
     });
 };
 export default designs;
