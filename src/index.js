@@ -14,6 +14,7 @@ import reviews from './modules/reviews';
 import documents from './modules/documents';
 import { Partners } from './modules/partners';
 import problems from './modules/problems';
+import scheme from './modules/scheme';
 
 let windowWidth = window.innerWidth;
 
@@ -26,16 +27,18 @@ popupPrivacy();
 formula(windowWidth);
 sliderRepairTypes(windowWidth)
 problems(windowWidth);
+documents();
+popupConsultation();
+accordion();
+reviews();
+scheme();
 window.addEventListener('resize', (e) =>{
     windowWidth = e.target.innerWidth; 
     formula(windowWidth);
     documents(windowWidth);
     problems(windowWidth);
 });
-popupConsultation();
-accordion();
-reviews();
-documents();
+
 const partnersSlider = new Partners({
     main: '.partners > .wrapper',
     wrap: '.partners-slider',
