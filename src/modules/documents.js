@@ -22,6 +22,7 @@ const documents = (windowWidth) => {
             item.addEventListener('click', () => {
                 popupTransparency.style.visibility = 'visible';
                 transparencyPopupSlides[i].style.display = 'flex';
+                [...transparencyPopupSlides[i].children].forEach((item) => item.style.display = 'block');
                 numberPopupSlide = i;
             });
             if(windowWidth < 1090){
@@ -30,7 +31,6 @@ const documents = (windowWidth) => {
                 item.style.display = 'flex';
             }
             transparencyPopupSlides[i].style.display = 'none';
-            [...transparencyPopupSlides[i].children].forEach((item) => item.style.display = 'block');
             transparencyCounter.children[0].children[0].textContent = 1;
             transparencyCounter.children[0].children[1].textContent = transparencyPopupSlides[i].children.length;
         });
@@ -55,14 +55,20 @@ const documents = (windowWidth) => {
 
         transparencyLeft.addEventListener('click', () => {
             transparencyPopupSlides[numberPopupSlide].children[0].style.display = 'block';
+            transparencyPopupSlides[numberPopupSlide].children[1].style.display = 'none';
             transparencyCounter.children[0].children[0].textContent = 1;
         });
         transparencyRight.addEventListener('click', () => {
             transparencyPopupSlides[numberPopupSlide].children[0].style.display = 'none';
+            transparencyPopupSlides[numberPopupSlide].children[1].style.display = 'block';
             transparencyCounter.children[0].children[0].textContent = 2;
         });
 
-        closePopup.addEventListener('click', () => popupTransparency.style.visibility = 'hidden');
+        closePopup.addEventListener('click', () => {
+            popupTransparency.style.visibility = 'hidden';
+            transparencyCounter.children[0].children[0].textContent = 1;
+            [...transparencyPopupSlides[numberPopupSlide].children].forEach((item) => item.style.display = 'none');
+        });
     }
 
     enabled();
