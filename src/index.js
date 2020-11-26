@@ -13,6 +13,7 @@ import accordion from './modules/faq';
 import reviews from './modules/reviews';
 import documents from './modules/documents';
 import { Partners } from './modules/partners';
+import problems from './modules/problems';
 
 let windowWidth = window.innerWidth;
 
@@ -24,10 +25,12 @@ popupRepair();
 popupPrivacy();
 formula(windowWidth);
 sliderRepairTypes(windowWidth)
+problems(windowWidth);
 window.addEventListener('resize', (e) =>{
-    let windowWidth = e.target.innerWidth; 
+    windowWidth = e.target.innerWidth; 
     formula(windowWidth);
     documents(windowWidth);
+    problems(windowWidth);
 });
 popupConsultation();
 accordion();
