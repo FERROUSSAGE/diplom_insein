@@ -7,7 +7,10 @@ import menu from './modules/menu';
 import { popupConsultation } from './modules/popup-consultation';
 import { popupRepair } from './modules/popup-repair-types';
 import { popupPrivacy } from './modules/privacy-policy';
+import sliderRepairTypes from './modules/types-repair';
 import sendData from './modules/send-data';
+
+let windowWidth = window.innerWidth;
 
 telAccord();
 menu();
@@ -15,6 +18,10 @@ sendData();
 fromFooterToTop();
 popupRepair();
 popupPrivacy();
-formula(window.innerWidth);
-window.addEventListener('resize', (e) => formula(e.target.innerWidth));
+formula(windowWidth);
+sliderRepairTypes(windowWidth)
+window.addEventListener('resize', (e) =>{
+    let windowWidth = e.target.innerWidth; 
+    formula(windowWidth);
+});
 popupConsultation();
