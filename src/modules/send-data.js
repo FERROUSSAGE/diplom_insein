@@ -56,6 +56,7 @@ const sendData = () => {
             console.log(result);
             popupTitle.innerHTML = `${result} <br> ${popupTitle.textContent}`;
             popupThank.style.visibility = 'visible';
+            setTimeout(() => {popupThank.style.visibility = 'hidden';}, 3000);
             closeBtn.addEventListener('click', () => popupThank.style.visibility = 'hidden');
         })
         .finally(() => form.reset());
