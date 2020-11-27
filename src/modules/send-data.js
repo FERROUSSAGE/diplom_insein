@@ -71,7 +71,7 @@ const sendData = () => {
             setTimeout(() => {popupThank.style.visibility = 'hidden'; popupTitle.innerHTML = data;}, 3000);
             closeBtn.addEventListener('click', () => {popupThank.style.visibility = 'hidden'; popupTitle.innerHTML = data;});
         })
-        .finally(() => (form.reset(), form.elements[form.elements.length - 2].disabled = false, containerSuccess.textContent = ''));
+        .finally(() => (form.reset(), form.elements[form.elements.length - 2].disabled = false, containerSuccess.innerHTML = ''));
     };
 
     document.addEventListener('submit', (event) => {
