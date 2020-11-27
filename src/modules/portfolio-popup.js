@@ -76,8 +76,8 @@ const portfolioPopup = () => {
     popupPortfolioCloseMobile.addEventListener(`click`, () => popupPortfolio.style.cssText = "visibility: hidden;");
   
     popupPortfolioClose.addEventListener(`click`, () => popupPortfolio.style.cssText = "visibility: hidden;");
-    portfolio.addEventListener('click', (e) => {
-        if (e.target === portfolio){
+    popupPortfolio.addEventListener('click', (e) => {
+        if (e.target === popupPortfolio){
             popupPortfolio.style.cssText = "visibility: hidden;";
         }
     });
