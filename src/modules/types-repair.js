@@ -9,7 +9,7 @@ const sliderRepairTypes = (windowWidth) => {
         navArrowLeft = document.getElementById('nav-arrow-repair-left_base'),
         navArrowRight = document.getElementById('nav-arrow-repair-right_base');
 
-    let slideWidth = 576,
+    let slideWidth = 546,
         count = 0,
         currentSlide = 0,
         countSlides = 5,
@@ -21,7 +21,7 @@ const sliderRepairTypes = (windowWidth) => {
     if(windowWidth < 580){
         slideWidth = typesSliderItems[0].children[0].offsetWidth;
     } else {
-        slideWidth = 576;
+        slideWidth = 546;
     }
 
     repairCounter.children[0].children[1].textContent = countSlides;
@@ -44,7 +44,6 @@ const sliderRepairTypes = (windowWidth) => {
             typesSliderItems[i].style.cssText = 'will-change: transform;';
         });
     });
-
     repairArrowRight.addEventListener('click', () => {
         count++; currentSlide--;
         if(count >= countSlides){
@@ -52,7 +51,7 @@ const sliderRepairTypes = (windowWidth) => {
         }
         typesSliderItems[countItem].style.transform = `translateY(${currentSlide * slideWidth}px)`;
         repairCounter.children[0].children[0].textContent = count + 1;
-        slideWidth = typesSliderItems[0].children[0].offsetWidth;
+        // slideWidth = typesSliderItems[0].children[0].offsetWidth;
     });
     repairArrowLeft.addEventListener('click', () => {
         count--; currentSlide++;
@@ -61,7 +60,7 @@ const sliderRepairTypes = (windowWidth) => {
         }
         typesSliderItems[countItem].style.transform = `translateY(${currentSlide * slideWidth}px)`;
         repairCounter.children[0].children[0].textContent =- currentSlide + 1;
-        slideWidth = typesSliderItems[0].children[0].offsetWidth;
+        // slideWidth = typesSliderItems[0].children[0].offsetWidth;
     });
 
 

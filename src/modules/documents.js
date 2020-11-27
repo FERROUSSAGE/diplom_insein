@@ -17,7 +17,8 @@ const documents = (windowWidth) => {
     let count = 0,
         numberPopupSlide = 0,
         countSlides = transparencyItems.length - 1;
-    const enabled = (i = 0) => {
+
+    const enabled = (index = 0) => {
         transparencyItems.forEach((item, i) => {
             item.children[0].addEventListener('click', () => {
                 popupTransparency.style.visibility = 'visible';
@@ -25,7 +26,7 @@ const documents = (windowWidth) => {
                 [...transparencyPopupSlides[i].children].forEach((item) => item.style.display = 'block');
                 numberPopupSlide = i;
             });
-            if(windowWidth < 1090){
+            if(windowWidth <= 1090){
                 item.style.display = 'none';
             } else {
                 item.style.display = 'flex';
@@ -34,7 +35,7 @@ const documents = (windowWidth) => {
             transparencyCounter.children[0].children[0].textContent = 1;
             transparencyCounter.children[0].children[1].textContent = transparencyPopupSlides[i].children.length;
         });
-        transparencyItems[i].style.display = 'flex';
+        transparencyItems[index].style.display = 'flex';
     };
 
     const listeners = () => {

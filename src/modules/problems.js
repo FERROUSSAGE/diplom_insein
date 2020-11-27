@@ -41,19 +41,19 @@ const problems = (windowWidth) => {
 
         problemsSliderWrap.style.overflow = 'hidden';
         problemsSlider.querySelectorAll('.problems-slider__slide').forEach(item => item.classList.remove('active-item'));
-
         if(windowWidth < 576){
             slideWidth = 100;
             width = 260;
-            problemsSlider.style.cssText = 'display: flex; align-items: flex-start; will-change: transform; margin-left: 30px';
+            problemsSlider.style.cssText = 'display: flex; align-items: flex-start; will-change: transform; margin-left: 15px;';
         } else {
             const firstSlide = problemsSliderSlides[0].cloneNode(true),
                 lastSlide = problemsSliderSlides[3].cloneNode(true);
                 problemsSlider.appendChild(firstSlide);
                 problemsSlider.prepend(lastSlide);
+                problemsSlider.style.cssText = `display: flex; align-items: flex-start; will-change: transform;`;
         }
 
-        problemsSlider.style.cssText = `display: flex; align-items: flex-start; will-change: transform;`;
+        // problemsSlider.style.cssText = `display: flex; align-items: flex-start; will-change: transform;`;
         problemsSliderSlides.forEach((item) => {
             item.style.cssText = `flex: 0 0 ${slideWidth}%;`;
         });

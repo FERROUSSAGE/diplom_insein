@@ -13,8 +13,7 @@ const portfolioPopup = () => {
         arrowRight = popupPortfolio.querySelector('#popup_portfolio_right'),
         arrowLeft = popupPortfolio.querySelector('#popup_portfolio_left');
         
-    let slideHeight,
-        currentSlide = 0,
+    let currentSlide = 0,
         countSlide = popupPortfolioText.length,
         windowWidth = window.innerWidth;
   
@@ -60,6 +59,7 @@ const portfolioPopup = () => {
     portfolioBtnMobile.forEach((item, i) => { 
         item.addEventListener('click', (e)=> {
             popupPortfolio.style.visibility = 'visible';  
+            currentSlide = i;
             render();
         });
     });
@@ -68,12 +68,8 @@ const portfolioPopup = () => {
         item.addEventListener('click', (e)=> {
             popupPortfolio.style.visibility = 'visible';     
             currentSlide = i;
-            slideHeight = popupPortfolioSlide.querySelector('img').height;
             render();
             textWrapper.querySelector('.slider-counter-content__current').textContent = currentSlide + 1;
-            textWrapper.style.top = `${slideHeight - 100}px`;
-            arrowRight.style.top = `${slideHeight / 2}px`;
-            arrowLeft.style.top = `${slideHeight / 2}px`;
       });
     });
   

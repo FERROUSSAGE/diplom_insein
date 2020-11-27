@@ -13,7 +13,8 @@ const popup = () => {
         popupDesignLeft = popupDesignTab.querySelector('#popup_design_left'),
         popupDesignRight = popupDesignTab.querySelector('#popup_design_right'),
         popupDesignsCounter = popupDesignTab.querySelector('#popup-designs-counter'),
-        popupDesignTexts = popupDesignTab.querySelectorAll('.popup-design-text');
+        popupDesignTexts = popupDesignTab.querySelectorAll('.popup-design-text'),
+        btnPopupClose = popupDesignTab.querySelector('.close');
 
 
     let buffer = 0,
@@ -24,6 +25,7 @@ const popup = () => {
 
     link.addEventListener('click', () => popupDesign.style.visibility = 'visible');
     btnClose.addEventListener('click', () => popupDesign.style.visibility = 'hidden');
+    btnPopupClose.addEventListener('click', () => popupDesign.style.visibility = 'hidden');
     const clear = () => {
         context.forEach((item, i) => {
             item.classList.remove('active');

@@ -50,7 +50,7 @@ popupPrivacy();
 formula(windowWidth);
 sliderRepairTypes(windowWidth)
 problems(windowWidth);
-documents();
+documents(windowWidth);
 popupConsultation();
 accordion();
 reviews();
