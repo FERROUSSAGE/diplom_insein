@@ -9,15 +9,16 @@ const sliderRepairTypes = () => {
         navArrowLeft = document.getElementById('nav-arrow-repair-left_base'),
         navArrowRight = document.getElementById('nav-arrow-repair-right_base');
 
-    let slideWidth = typesSliderItems[0].children[0].offsetWidth,
+    let slideWidth = 547,
         count = 0,
         currentSlide = 0,
-        countSlides = 3,
+        countSlides = 5,
         countItem = 0,
         base = 0,
         navListRepairWidth = 0,
         repairWidth = document.querySelector('.repair-types-nav').offsetWidth;
 
+    repairCounter.children[0].children[1].textContent = countSlides;
     repairItems.forEach((item, i) => {
         item.addEventListener('click', () => {
             repairItems.forEach((itemR, i) => {
@@ -48,11 +49,12 @@ const sliderRepairTypes = () => {
     });
     repairArrowLeft.addEventListener('click', () => {
         count--; currentSlide++;
-        if(count < 1){
-            count = countSlides; currentSlide = -countSlides;
+        console.log(count);
+        if(count <= 0){
+            count = countSlides; currentSlide = -countSlides + 1;
         }
         typesSliderItems[countItem].style.transform = `translateY(${currentSlide * slideWidth}px)`;
-        repairCounter.children[0].children[0].textContent =- currentSlide;
+        repairCounter.children[0].children[0].textContent =- currentSlide + 1;
     });
 
 
