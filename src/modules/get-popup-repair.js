@@ -10,8 +10,6 @@ const getPopupRepair = (data) => {
     
     navBtns.style.position = 'relative';
     contentDate.textContent = data[0].date;
-    console.log(data);
-
 
     let count = 0;
 
