@@ -6,7 +6,6 @@ const sendData = () => {
         closeBtn = popupThank.querySelector('.close'),
         popupTitle = popupThank.querySelector('.popup-thank__title');
 
-
     const validateInput = () => {
         document.querySelectorAll('form').forEach(form => {
             [...form.elements].forEach(item => {
@@ -53,24 +52,27 @@ const sendData = () => {
             }
         })
         .then((result) => {
-            console.log(result);
+            const data = popupTitle.textContent;
             popupTitle.innerHTML = `${result} <br> ${popupTitle.textContent}`;
             popupThank.style.visibility = 'visible';
-            setTimeout(() => {popupThank.style.visibility = 'hidden';}, 3000);
-            closeBtn.addEventListener('click', () => popupThank.style.visibility = 'hidden');
+            setTimeout(() => {popupThank.style.visibility = 'hidden'; popupTitle.innerHTML = data;}, 3000);
+            closeBtn.addEventListener('click', () => {popupThank.style.visibility = 'hidden'; popupTitle.innerHTML = data;});
         })
-        .finally(() => form.reset());
+        .finally(() => (form.reset(), form.elements[form.elements.length - 2].disabled = false));
     };
 
     document.addEventListener('submit', (event) => {
         event.preventDefault();
         const target = event.target;
 
-        if(!target.elements[target.elements.length-1].checked){
+        if(target.elements['phone'].value.length < 18){
+            alert('Номер телефона должен содержать 18-ть символов!');
+        }
+        else if(!target.elements[target.elements.length-1].checked){
             alert('Прежде чем отправить, нужно согласиться с нашей политикой конфиденциальности!');
         } else {
             postData(target);
-            target.elements[target.elements.length-2].disabled = false;
+            target.elements[target.elements.length-2].disabled = true;
         }
     });
 
