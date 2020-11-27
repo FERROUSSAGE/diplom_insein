@@ -19,8 +19,16 @@ import designs from './modules/designs';
 import { popupDesign } from './modules/popup-dialog-design';
 import portfolio from './modules/portfolio';
 import portfolioPopup from './modules/portfolio-popup';
+import getPopupRepair from './modules/get-popup-repair';
 
 let windowWidth = window.innerWidth;
+
+(() => {
+    fetch('../db/db.json')
+        .then(response => response.json())
+        .then(result => getPopupRepair(result))
+        .catch(error => console.log(error))
+})();
 
 telAccord();
 menu();
