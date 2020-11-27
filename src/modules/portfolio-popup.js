@@ -76,6 +76,11 @@ const portfolioPopup = () => {
     popupPortfolioCloseMobile.addEventListener(`click`, () => popupPortfolio.style.cssText = "visibility: hidden;");
   
     popupPortfolioClose.addEventListener(`click`, () => popupPortfolio.style.cssText = "visibility: hidden;");
+    portfolio.addEventListener('click', (e) => {
+        if (e.target === portfolio){
+            popupPortfolio.style.cssText = "visibility: hidden;";
+        }
+    });
   
     window.addEventListener(`resize`, () => {
         windowWidth = window.innerWidth;

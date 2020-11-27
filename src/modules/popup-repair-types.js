@@ -10,7 +10,12 @@ const popup = () => {
             popupRepair.style.visibility = 'visible';
         });
     });
-    popupClose.addEventListener('click', () => popupRepair.style.visibility = 'hidden');  
+    popupClose.addEventListener('click', () => popupRepair.style.visibility = 'hidden');
+    popupRepair.addEventListener('click', (e) => {
+        if(e.target === popupRepair){
+            popupRepair.style.visibility = 'hidden';
+        }
+    });
 };
 
 export {popup as popupRepair};

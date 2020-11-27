@@ -14,6 +14,17 @@ const documents = (windowWidth) => {
         transparencyLeft = popupDialogTransparency.querySelector('#transparency_left'),
         transparencyRight = popupDialogTransparency.querySelector('#transparency_right'),
         closePopupDialog = popupDialogTransparency.querySelector('.close');
+
+    popupTransparency.addEventListener('click', (e) => {
+        if (e.target === popupTransparency){
+            popupTransparency.style.visibility = 'hidden';
+        }
+    });
+    popupDialogTransparency.addEventListener('click', (e) => {
+        if (e.target === popupDialogTransparency){
+            popupDialogTransparency.style.visibility = 'hidden';
+        }
+    });
  
     let count = 0,
         numberPopupSlide = 0,

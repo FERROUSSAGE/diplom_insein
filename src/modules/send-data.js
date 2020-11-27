@@ -4,7 +4,8 @@ const sendData = () => {
 
     const popupThank = document.querySelector('.popup-thank '),
         closeBtn = popupThank.querySelector('.close'),
-        popupTitle = popupThank.querySelector('.popup-thank__title');
+        popupTitle = popupThank.querySelector('.popup-thank__title'),
+        containerSuccess = document.createElement('div');
 
     const validateInput = () => {
         document.querySelectorAll('form').forEach(form => {
@@ -23,6 +24,18 @@ const sendData = () => {
             });
         });
     };
+
+    const preloader = () => {
+        const preloader = document.createElement('div');
+        preloader.style.cssText = `
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+            background: transparent url('//i.gifer.com/Xqg8.gif') no-repeat center center;
+        `;
+        return preloader;
+    };
+
 
     const formDataToJson = (form) => {
         const formData = new FormData(form);
@@ -58,14 +71,17 @@ const sendData = () => {
             setTimeout(() => {popupThank.style.visibility = 'hidden'; popupTitle.innerHTML = data;}, 3000);
             closeBtn.addEventListener('click', () => {popupThank.style.visibility = 'hidden'; popupTitle.innerHTML = data;});
         })
-        .finally(() => (form.reset(), form.elements[form.elements.length - 2].disabled = false));
+        .finally(() => (form.reset(), form.elements[form.elements.length - 2].disabled = false, containerSuccess.textContent = ''));
     };
 
     document.addEventListener('submit', (event) => {
         event.preventDefault();
         const target = event.target;
 
-        if(target.elements['phone'].value.length < 18){
+        if(target.elements['name'] && target.elements['name'].value.length < 3){
+            alert('Имя должно содержать как минимум 2 буквы');
+        }
+        else if(target.elements['phone'].value.length < 18){
             alert('Номер телефона должен содержать 18-ть символов!');
         }
         else if(!target.elements[target.elements.length-1].checked){
@@ -73,6 +89,8 @@ const sendData = () => {
         } else {
             postData(target);
             target.elements[target.elements.length-2].disabled = true;
+            target.appendChild(containerSuccess);
+            containerSuccess.appendChild(preloader());
         }
     });
 

@@ -7,6 +7,11 @@ const popup = () => {
         item.addEventListener('click', () => popupConsultation.style.visibility = 'visible');
     }) 
     btnClose.addEventListener('click', () => popupConsultation.style.visibility = 'hidden');
+    popupConsultation.addEventListener('click', (e) => {
+        if (e.target === popupConsultation){
+            popupConsultation.style.visibility = 'hidden';
+        }
+    });
 };
 
 export {popup as popupConsultation};

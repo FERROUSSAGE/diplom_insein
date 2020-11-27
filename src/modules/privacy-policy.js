@@ -10,6 +10,11 @@ const popup = () => {
     });
 
     popupClose.addEventListener('click', () => popupPrivacy.style.visibility = 'hidden');
+    popupPrivacy.addEventListener('click', (e) => {
+        if (e.target === popupPrivacy){
+            popupPrivacy.style.visibility = 'hidden';
+        }
+    });
 
 };
 

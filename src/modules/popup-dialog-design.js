@@ -26,6 +26,11 @@ const popup = () => {
     link.addEventListener('click', () => popupDesign.style.visibility = 'visible');
     btnClose.addEventListener('click', () => popupDesign.style.visibility = 'hidden');
     btnPopupClose.addEventListener('click', () => popupDesign.style.visibility = 'hidden');
+    popupDesign.addEventListener('click', (e) => {
+        if (e.target === popupDesign){
+            popupDesign.style.visibility = 'hidden';
+        }
+    });
     const clear = () => {
         context.forEach((item, i) => {
             item.classList.remove('active');
