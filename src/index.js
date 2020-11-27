@@ -64,6 +64,7 @@ window.addEventListener('resize', (e) =>{
     formula(windowWidth);
     documents(windowWidth);
     problems(windowWidth);
+    sliderRepairTypes(windowWidth);
 });
 
 const partnersSlider = new Partners({
