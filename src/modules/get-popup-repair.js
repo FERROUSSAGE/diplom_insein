@@ -26,7 +26,8 @@ const getPopupRepair = (data) => {
         data.forEach((item, i) => {
             if( i !== 0){
                 const button = document.createElement('button');
-                button.classList.add('button_o','popup-repair-types-nav__item');
+                button.classList.add('button_o');
+                button.classList.add('popup-repair-types-nav__item');
                 button.textContent = item.title;
                 button.dataset.num = i;
 

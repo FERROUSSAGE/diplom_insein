@@ -1,5 +1,16 @@
 'use strict';
 
+import 'regenerator-runtime/runtime';
+import '@babel/polyfill';
+import 'events-polyfill';
+import 'nodelist-foreach-polyfill';
+import elementClosest from 'element-closest';
+elementClosest(window);
+import 'formdata-polyfill';
+import 'es6-promise';
+import 'fetch-polyfill';
+import 'scroll-behavior-polyfill';
+
 import fromFooterToTop from './modules/footer';
 import formula from './modules/formula';
 import telAccord from './modules/header-tel';
