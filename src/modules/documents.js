@@ -12,7 +12,8 @@ const documents = (windowWidth) => {
         transparencyPopupSlides = transparencyPopupSlider.querySelectorAll('.popup-transparency-slider__slide'),
         transparencyCounter = popupDialogTransparency.querySelector('#transparency-popup-counter'),
         transparencyLeft = popupDialogTransparency.querySelector('#transparency_left'),
-        transparencyRight = popupDialogTransparency.querySelector('#transparency_right');
+        transparencyRight = popupDialogTransparency.querySelector('#transparency_right'),
+        closePopupDialog = popupDialogTransparency.querySelector('.close');
  
     let count = 0,
         numberPopupSlide = 0,
@@ -66,6 +67,11 @@ const documents = (windowWidth) => {
         });
 
         closePopup.addEventListener('click', () => {
+            popupTransparency.style.visibility = 'hidden';
+            transparencyCounter.children[0].children[0].textContent = 1;
+            [...transparencyPopupSlides[numberPopupSlide].children].forEach((item) => item.style.display = 'none');
+        });
+        closePopupDialog.addEventListener('click', () => {
             popupTransparency.style.visibility = 'hidden';
             transparencyCounter.children[0].children[0].textContent = 1;
             [...transparencyPopupSlides[numberPopupSlide].children].forEach((item) => item.style.display = 'none');

@@ -31,7 +31,7 @@ const popup = () => {
             item.classList.remove('active');
             item.dataset.num = i;
             popupDesignSliderStyle[i].dataset.num = i;
-            popupDesignSliderStyle[i].style.display = 'none';
+            popupDesignSliderStyle[i].style.opacity = 'none';
             popupDesignTexts[i].classList.remove('visible-content-block');
         });
     };
