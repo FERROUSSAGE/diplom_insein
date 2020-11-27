@@ -3,7 +3,7 @@ const accordion = () => {
         titleBlock = faq.querySelectorAll('.title_block');
 
     faq.addEventListener(`click`, (e) => {
-        titleBlock.forEach(item => item.classList.remove('msg-active'));
+        titleBlock.forEach((item) => item.classList.remove('msg-active'));
         e.target.classList.add('msg-active');
     });
 

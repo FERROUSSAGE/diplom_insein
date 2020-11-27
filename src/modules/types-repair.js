@@ -28,7 +28,11 @@ const sliderRepairTypes = () => {
             item.classList.add('active')
         
             countSlides = typesSliderItems[i].children.length;
+            repairCounter.children[0].children[0].textContent = 1;
             repairCounter.children[0].children[1].textContent = countSlides;
+            count = 0;
+            currentSlide = 0;
+            base = 0;
             countItem = i;
             typesSliderItems[i].style.cssText = 'will-change: transform;';
         });
@@ -44,7 +48,7 @@ const sliderRepairTypes = () => {
     });
     repairArrowLeft.addEventListener('click', () => {
         count--; currentSlide++;
-        if(count <= 0){
+        if(count < 1){
             count = countSlides; currentSlide = -countSlides;
         }
         typesSliderItems[countItem].style.transform = `translateY(${currentSlide * slideWidth}px)`;

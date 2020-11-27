@@ -9,6 +9,8 @@ const problems = (windowWidth) => {
         problemsArrowLeft = problemsSliderWrap.querySelector('#problems-arrow_left'),
         problemsArrowRight = problemsSliderWrap.querySelector('#problems-arrow_right');
 
+    // problemsSlider.style.marginLeft = '-110px';
+
     if(windowWidth > 1024){
         problemsItems.forEach((item) => {
             const icon = item.querySelector('.problems-item__icon-inner'),
@@ -33,6 +35,7 @@ const problems = (windowWidth) => {
     } else {
 
         let slideWidth = 33,
+            width = problemsSliderSlides[0].offsetWidth,
             count = 0,
             currentSlide = 0;
 
@@ -41,6 +44,8 @@ const problems = (windowWidth) => {
 
         if(windowWidth < 576){
             slideWidth = 100;
+            width = 260;
+            problemsSlider.style.cssText = 'display: flex; align-items: flex-start; will-change: transform; margin-left: 30px';
         } else {
             const firstSlide = problemsSliderSlides[0].cloneNode(true),
                 lastSlide = problemsSliderSlides[3].cloneNode(true);
@@ -48,14 +53,14 @@ const problems = (windowWidth) => {
                 problemsSlider.prepend(lastSlide);
         }
 
-        problemsSlider.style.cssText = 'display: flex; align-items: flex-start; will-change: transform;';
+        problemsSlider.style.cssText = `display: flex; align-items: flex-start; will-change: transform;`;
         problemsSliderSlides.forEach((item) => {
-            item.style.cssText = `flex: 0 0 ${slideWidth}%`;
+            item.style.cssText = `flex: 0 0 ${slideWidth}%;`;
         });
 
         const slider = (count) => {
             problemsSliderSlides.forEach((item, i) => {
-                item.style.cssText = `width: ${slideWidth}%; justify-content: center;`;
+                item.style.cssText = `width: ${slideWidth + 17}%;`;
                 item.classList.remove('active-item');
                 if(i === count){
                     item.classList.add('active-item');
@@ -63,7 +68,7 @@ const problems = (windowWidth) => {
             })
         };
 
-        problemsSlider.style.transform = `translateX(${currentSlide * slideWidth}%)`;
+        problemsSlider.style.transform = `translateX(${currentSlide * width}px)`;
         slider(count);
 
         problemsArrowRight.addEventListener('click', () => {
@@ -71,7 +76,7 @@ const problems = (windowWidth) => {
             if(count > 3){
                 count = 0; currentSlide = 0;
             }
-            problemsSlider.style.transform = `translateX(${currentSlide * slideWidth}%)`;
+            problemsSlider.style.transform = `translateX(${currentSlide * width}px)`;
             slider(count);
         });
         problemsArrowLeft.addEventListener('click', () => {
@@ -79,7 +84,7 @@ const problems = (windowWidth) => {
             if(count < 0){
                 count = 3; currentSlide = -3;
             }
-            problemsSlider.style.transform = `translateX(${currentSlide * slideWidth}%)`;
+            problemsSlider.style.transform = `translateX(${currentSlide * width}px)`;
             slider(count);
         });
 

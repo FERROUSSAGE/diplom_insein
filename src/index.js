@@ -17,6 +17,8 @@ import problems from './modules/problems';
 import scheme from './modules/scheme';
 import designs from './modules/designs';
 import { popupDesign } from './modules/popup-dialog-design';
+import portfolio from './modules/portfolio';
+import portfolioPopup from './modules/portfolio-popup';
 
 let windowWidth = window.innerWidth;
 
@@ -36,6 +38,8 @@ reviews();
 scheme();
 designs();
 popupDesign();
+portfolio();
+portfolioPopup();
 window.addEventListener('resize', (e) =>{
     windowWidth = e.target.innerWidth; 
     formula(windowWidth);

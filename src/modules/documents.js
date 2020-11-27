@@ -19,7 +19,7 @@ const documents = (windowWidth) => {
         countSlides = transparencyItems.length - 1;
     const enabled = (i = 0) => {
         transparencyItems.forEach((item, i) => {
-            item.addEventListener('click', () => {
+            item.children[0].addEventListener('click', () => {
                 popupTransparency.style.visibility = 'visible';
                 transparencyPopupSlides[i].style.display = 'flex';
                 [...transparencyPopupSlides[i].children].forEach((item) => item.style.display = 'block');

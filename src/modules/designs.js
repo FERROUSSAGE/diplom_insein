@@ -32,6 +32,18 @@ const designs = () => {
     previewBlocks[0].classList.add('visible');
     designSliderStyle[0].style.display = 'flex';
 
+    const reset = (number) => {
+        [...designSliderStyle[number].children].forEach((slide, i) => {
+            if(i !== 0) {
+                slide.style.display = 'none';
+                previewBlocks[number].children[i].children[0].classList.remove('preview_active');
+            } else {
+                slide.style.display = 'block';
+                previewBlocks[number].children[i].children[0].classList.add('preview_active');
+            }
+        });
+    };
+
     navWrap.addEventListener('click', (e) => {
         const target = e.target;
 
@@ -46,6 +58,12 @@ const designs = () => {
             countSlides = designSliderStyle[target.dataset.num].children.length;
             number = target.dataset.num;
             designsCounter.children[0].children[1].textContent = designSliderStyle[target.dataset.num].children.length;
+            designsCounter.children[0].children[0].textContent = 1;
+            try {
+                reset(+target.dataset.num + 1);
+                reset(+target.dataset.num - 1);
+                count = 0;
+            } catch (error) {}
         }
         if(target.matches('.nav-arrow_right')){
             buffer = (navList.offsetWidth - navWidth);

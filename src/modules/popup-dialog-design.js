@@ -48,6 +48,7 @@ const popup = () => {
             popupDesignSliderStyle[target.dataset.num].style.display = 'flex';
             popupDesignTexts[target.dataset.num].classList.add('visible-content-block');
             popupDesignsCounter.children[0].children[1].textContent = popupDesignSliderStyle[target.dataset.num].children.length;
+            popupDesignsCounter.children[0].children[0].textContent = 1;
             countSlides = popupDesignSliderStyle[target.dataset.num].children.length;
             number = target.dataset.num;
         }
