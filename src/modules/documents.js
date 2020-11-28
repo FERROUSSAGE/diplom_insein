@@ -60,7 +60,6 @@ const documents = (windowWidth) => {
         });
 
         const close = () => {
-            console.log(count);
             popupTransparency.style.visibility = 'hidden';
             transparencyCounter.children[0].children[0].textContent = 1;
             [...transparencyPopupSlides].forEach(item => item.style.display = 'none');
@@ -78,7 +77,6 @@ const documents = (windowWidth) => {
             if (transparencyPopupSlides[count - 1]){
                 transparencyPopupSlides[count - 1].style.display = 'none';
             }
-            console.log(count);
             transparencyPopupSlides[count].style.display = 'flex';
             transparencyCounter.children[0].children[0].textContent = count + 1;
         });
