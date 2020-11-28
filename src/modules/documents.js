@@ -14,17 +14,6 @@ const documents = (windowWidth) => {
         transparencyLeft = popupDialogTransparency.querySelector('#transparency_left'),
         transparencyRight = popupDialogTransparency.querySelector('#transparency_right'),
         closePopupDialog = popupDialogTransparency.querySelector('.close');
-
-    popupTransparency.addEventListener('click', (e) => {
-        if (e.target === popupTransparency){
-            popupTransparency.style.visibility = 'hidden';
-        }
-    });
-    popupDialogTransparency.addEventListener('click', (e) => {
-        if (e.target === popupDialogTransparency){
-            popupDialogTransparency.style.visibility = 'hidden';
-        }
-    });
  
     let count = 0,
         countSlides = 0;
@@ -32,10 +21,12 @@ const documents = (windowWidth) => {
     const enabled = (index = 0) => {
         countSlides = transparencyItems.length - 1;
         transparencyItems.forEach((item, i) => {
+            transparencyPopupSlides[i].style.display = 'none';
             item.children[0].addEventListener('click', (e) => {
                 popupTransparency.style.visibility = 'visible';
                 transparencyPopupSlides[i].style.display = 'flex';
-                transparencyCounter.children[0].children[0].textContent = 1;
+                count = i + 1;
+                transparencyCounter.children[0].children[0].textContent = i+1;
                 transparencyCounter.children[0].children[1].textContent = countSlides + 1;
             })
             if (windowWidth <= 1090) {
@@ -68,42 +59,52 @@ const documents = (windowWidth) => {
             enabled(count);
         });
 
+        const close = () => {
+            console.log(count);
+            popupTransparency.style.visibility = 'hidden';
+            transparencyCounter.children[0].children[0].textContent = 1;
+            [...transparencyPopupSlides].forEach(item => item.style.display = 'none');
+            count = 0;
+        }
+
         transparencyLeft.addEventListener('click', () => {
-                count--;
-                if (count < 0) {
-                    count = countSlides;
-                }
-                if (transparencyPopupSlides[count - 2]) {
-                    transparencyPopupSlides[count - 2].style.display = 'none';
-                }
-                if (transparencyPopupSlides[count - 1]){
-                    transparencyPopupSlides[count - 1].style.display = 'none';
-                }
-                console.log(count);
-                transparencyPopupSlides[count].style.display = 'flex';
+            count--;
+            if (count < 0) {
+                count = countSlides;
+            }
+            if (transparencyPopupSlides[count - 2]) {
+                transparencyPopupSlides[count - 2].style.display = 'none';
+            }
+            if (transparencyPopupSlides[count - 1]){
+                transparencyPopupSlides[count - 1].style.display = 'none';
+            }
+            console.log(count);
+            transparencyPopupSlides[count].style.display = 'flex';
             transparencyCounter.children[0].children[0].textContent = count + 1;
         });
         transparencyRight.addEventListener('click', () => {
-                count++;
-                if (count > countSlides) {
-                    count = 0;
-                }
-                if (transparencyPopupSlides[count - 1]) {
-                    transparencyPopupSlides[count - 1].style.display = 'none';
-                }
-                transparencyPopupSlides[count].style.display = 'flex';
+            count++;
+            if (count > countSlides) {
+                count = 0;
+            }
+            if (transparencyPopupSlides[count - 1]) {
+                transparencyPopupSlides[count - 1].style.display = 'none';
+            }
+            transparencyPopupSlides[count].style.display = 'flex';
             transparencyCounter.children[0].children[0].textContent = count + 1;
         });
 
-        closePopup.addEventListener('click', () => {
-            popupTransparency.style.visibility = 'hidden';
-            transparencyCounter.children[0].children[0].textContent = 1;
-            [...transparencyPopupSlides[numberPopupSlide].children].forEach((item) => item.style.display = 'none');
+        closePopup.addEventListener('click', () => close());
+        closePopupDialog.addEventListener('click', () => close());
+        popupTransparency.addEventListener('click', (e) => {
+            if (e.target === popupTransparency) {
+                close();
+            }
         });
-        closePopupDialog.addEventListener('click', () => {
-            popupTransparency.style.visibility = 'hidden';
-            transparencyCounter.children[0].children[0].textContent = 1;
-            [...transparencyPopupSlides[numberPopupSlide].children].forEach((item) => item.style.display = 'none');
+        popupDialogTransparency.addEventListener('click', (e) => {
+            if (e.target === popupDialogTransparency) {
+                close();
+            }
         });
     }
 
