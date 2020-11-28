@@ -23,29 +23,42 @@ const popup = () => {
         number = 0,
         navWidth = navList.parentNode.offsetWidth;
 
-    link.addEventListener('click', () => popupDesign.style.visibility = 'visible');
-    btnClose.addEventListener('click', () => popupDesign.style.visibility = 'hidden');
-    btnPopupClose.addEventListener('click', () => popupDesign.style.visibility = 'hidden');
-    popupDesign.addEventListener('click', (e) => {
-        if (e.target === popupDesign){
-            popupDesign.style.visibility = 'hidden';
-        }
-    });
     const clear = () => {
         context.forEach((item, i) => {
             item.classList.remove('active');
             item.dataset.num = i;
             popupDesignSliderStyle[i].dataset.num = i;
-            // popupDesignSliderStyle[i].style.opacity = 'none';
             popupDesignTexts[i].classList.remove('visible-content-block');
         });
+        [...popupDesignSliderStyle].forEach(item => [...item.children].forEach((el, i) => {
+            if (i === 0) { el.style.display = 'flex'; }
+            else { el.style.display = 'none'; }
+        }))
     };
 
-    clear();
-    context[0].classList.add('active');
-    popupDesignTexts[0].classList.add('visible-content-block');
-    popupDesignSliderStyle[0].style.display = 'flex';
-    popupDesignsCounter.children[0].children[1].textContent = popupDesignSliderStyle[0].children.length;
+    const reset = () => {
+        clear();
+        count = 0;
+        context[0].classList.add('active');
+        popupDesignTexts[0].classList.add('visible-content-block');
+        popupDesignSliderStyle[0].style.display = 'flex';
+        popupDesignsCounter.children[0].children[1].textContent = popupDesignSliderStyle[0].children.length;
+        popupDesignsCounter.children[0].children[0].textContent = 1;
+    };    
+    link.addEventListener('click', () => {
+        reset();
+        popupDesign.style.visibility = 'visible';
+    });
+    btnClose.addEventListener('click', () => (popupDesign.style.visibility = 'hidden', reset()));
+    btnPopupClose.addEventListener('click', () => (popupDesign.style.visibility = 'hidden', reset()));
+    popupDesign.addEventListener('click', (e) => {
+        if (e.target === popupDesign){
+            popupDesign.style.visibility = 'hidden';
+            reset();
+        }
+    });
+
+    reset();
 
     navWrap.addEventListener('click', (e) => {
         popupDesignSliderStyle.forEach((item) => item.style.display = 'none');
@@ -55,10 +68,10 @@ const popup = () => {
             target.classList.add('active');
             popupDesignSliderStyle[target.dataset.num].style.display = 'flex';
             popupDesignTexts[target.dataset.num].classList.add('visible-content-block');
-            popupDesignsCounter.children[0].children[1].textContent = popupDesignSliderStyle[target.dataset.num].children.length;
             popupDesignsCounter.children[0].children[0].textContent = 1;
-            countSlides = popupDesignSliderStyle[target.dataset.num].children.length;
             number = target.dataset.num;
+            countSlides = popupDesignSliderStyle[target.dataset.num].children.length;
+            popupDesignsCounter.children[0].children[1].textContent = popupDesignSliderStyle[number].children.length;
             count = 0;
         }
 
