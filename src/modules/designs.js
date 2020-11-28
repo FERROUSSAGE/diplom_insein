@@ -13,7 +13,10 @@ const designs = () => {
 
         let count = 0,
             countSlides = designSliderStyle[0].children.length,
-            number = 0;
+            number = 0,
+            base = 0,
+            navListWidth = 0,
+            width = navWrap.offsetWidth;
 
 
     const clear = () => {
@@ -46,10 +49,7 @@ const designs = () => {
 
     navWrap.addEventListener('click', (e) => {
         const target = e.target;
-
-        let buffer = 0,
-            navWidth = navList.parentNode.offsetWidth;
-
+        
         if(target.matches('.designs-nav__item')){
             clear();
             target.classList.add('active');
@@ -65,17 +65,17 @@ const designs = () => {
                 count = 0;
             } catch (error) {}
         }
-        if(target.matches('.nav-arrow_right')){
-            buffer = (navList.offsetWidth - navWidth);
-            navList.style.transform = `translateX(${-1 * buffer}px)`;
-            target.style.display = 'none';
-            target.previousElementSibling.style.display = 'block';
+        if (target.matches('.nav-arrow_right')) {
+            if (base >= navList.children.length) return;
+            base++;
+            navListWidth = (navList.offsetWidth - width) / context.length;
+            navList.style.transform = `translateX(-${navListWidth * base}px)`;
         }
-        if(target.matches('.nav-arrow_left')){
-            buffer = (navList.offsetWidth - navWidth) / (context.length * context.length);
-            navList.style.transform = `translateX(${1 * buffer}px)`;
-            target.style.display = 'none';
-            target.nextElementSibling.style.display = 'block';
+        if (target.matches('.nav-arrow_left')) {
+            if (base <= 0) return;
+            base--;
+            navListWidth = (navList.offsetWidth - width) / context.length;
+            navList.style.transform = `translateX(-${navListWidth * base}px)`;
         }
     });
 

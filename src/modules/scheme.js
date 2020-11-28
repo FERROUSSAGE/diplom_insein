@@ -8,6 +8,10 @@ const scheme = () => {
 
     schemeDescriptionBlock[0].classList.add('visible-content-block');
     
+    let base = 0,
+        navListWidth = 0,
+        shemaWidth = navWrap.offsetWidth;
+
     const clear = () => {
         [...context].forEach((item, i) =>{
             item.classList.remove('active');
@@ -19,9 +23,7 @@ const scheme = () => {
 
     navWrap.addEventListener('click', (e) => {
         const target = e.target;
-            
-        let buffer = 0,
-            navWidth = navList.parentNode.offsetWidth;
+        
         if(target.matches('.scheme-nav__item')){
             clear();
             target.classList.add('active');
@@ -30,16 +32,16 @@ const scheme = () => {
         }
 
         if(target.matches('.nav-arrow_right')){
-            buffer = (navList.offsetWidth - navWidth);
-            navList.style.transform = `translateX(${-1 * buffer}px)`;
-            target.style.display = 'none';
-            target.previousElementSibling.style.display = 'block';
+            if (base >= navList.children.length) return;
+            base++;
+            navListWidth = (navList.offsetWidth - shemaWidth) / context.length;
+            navList.style.transform = `translateX(-${navListWidth * base}px)`;
         }
         if(target.matches('.nav-arrow_left')){
-            buffer = (navList.offsetWidth - navWidth) / (context.length * context.length);
-            navList.style.transform = `translateX(${1 * buffer}px)`;
-            target.style.display = 'none';
-            target.nextElementSibling.style.display = 'block';
+            if (base <= 0) return;
+            base--;
+            navListWidth = (navList.offsetWidth - shemaWidth) / context.length;
+            navList.style.transform = `translateX(-${navListWidth * base}px)`;
         }
     });
 };

@@ -36,7 +36,7 @@ const popup = () => {
             item.classList.remove('active');
             item.dataset.num = i;
             popupDesignSliderStyle[i].dataset.num = i;
-            popupDesignSliderStyle[i].style.opacity = 'none';
+            // popupDesignSliderStyle[i].style.opacity = 'none';
             popupDesignTexts[i].classList.remove('visible-content-block');
         });
     };
@@ -48,6 +48,7 @@ const popup = () => {
     popupDesignsCounter.children[0].children[1].textContent = popupDesignSliderStyle[0].children.length;
 
     navWrap.addEventListener('click', (e) => {
+        popupDesignSliderStyle.forEach((item) => item.style.display = 'none');
         const target = e.target;
         if(target.matches('.designs-nav__item')){
             clear();
@@ -58,6 +59,7 @@ const popup = () => {
             popupDesignsCounter.children[0].children[0].textContent = 1;
             countSlides = popupDesignSliderStyle[target.dataset.num].children.length;
             number = target.dataset.num;
+            count = 0;
         }
 
         if(target.matches('.nav-arrow_right')){

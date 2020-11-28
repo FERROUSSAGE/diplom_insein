@@ -51,7 +51,6 @@ const sliderRepairTypes = (windowWidth) => {
         }
         typesSliderItems[countItem].style.transform = `translateY(${currentSlide * slideWidth}px)`;
         repairCounter.children[0].children[0].textContent = count + 1;
-        // slideWidth = typesSliderItems[0].children[0].offsetWidth;
     });
     repairArrowLeft.addEventListener('click', () => {
         count--; currentSlide++;
@@ -60,7 +59,6 @@ const sliderRepairTypes = (windowWidth) => {
         }
         typesSliderItems[countItem].style.transform = `translateY(${currentSlide * slideWidth}px)`;
         repairCounter.children[0].children[0].textContent =- currentSlide + 1;
-        // slideWidth = typesSliderItems[0].children[0].offsetWidth;
     });
 
 
