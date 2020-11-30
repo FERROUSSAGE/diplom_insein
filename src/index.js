@@ -35,7 +35,7 @@ import getPopupRepair from './modules/get-popup-repair';
 let windowWidth = window.innerWidth;
 
 (() => {
-    fetch('../db/db.json')
+    fetch('/db/db.json')
         .then(response => response.json())
         .then(result => getPopupRepair(result))
         .catch(error => console.log(error))

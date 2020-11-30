@@ -78,7 +78,7 @@ const sendData = () => {
         event.preventDefault();
         const target = event.target;
 
-        if(target.elements['name'] && target.elements['name'].value.length < 3){
+        if(target.elements['name'] && target.elements['name'].value.length < 2){
             alert('Имя должно содержать как минимум 2 буквы');
         }
         else if(target.elements['phone'].value.length < 18){
